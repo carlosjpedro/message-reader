@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ConsoleApp1
+namespace ConsoleApp1.Model
 {
     internal class InvalidNiceMessage : NiceMessage
     {

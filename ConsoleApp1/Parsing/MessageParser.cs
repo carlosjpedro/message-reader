@@ -1,4 +1,5 @@
 ﻿using ConsoleApp1.Exceptions;
+using ConsoleApp1.Model;
 using ConsoleApp1.Parsing;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.ComTypes;

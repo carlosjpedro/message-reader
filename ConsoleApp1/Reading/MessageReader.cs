@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 
-namespace ConsoleApp1
+namespace ConsoleApp1.Reading
 {
     public class MessageReader : IMessageReader
     {
@@ -11,7 +11,7 @@ namespace ConsoleApp1
             {
                 var currentMessage = new List<string>();
                 string line = null;
-                while( (line = await reader.ReadLineAsync()) != null)
+                while ((line = await reader.ReadLineAsync()) != null)
                 {
                     if (string.IsNullOrWhiteSpace(line))
                     {
