@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace ConsoleApp1
 {
@@ -13,6 +14,11 @@ namespace ConsoleApp1
             Ip = ip;
             Port = port;
             Codecs = codecs;
+        }
+
+        public override string ToString()
+        {
+            return $"IP: {Ip}, Port: {Port}, Codecs: [{string.Join(", ", Codecs)}]";
         }
     }
 
