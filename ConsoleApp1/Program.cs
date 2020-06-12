@@ -6,29 +6,38 @@ namespace ConsoleApp1
 {
     class Program
     {
+        const string FilePath = @"C:\Users\Carlos\Desktop\sdp_input.txt";
         static void Main(string[] args)
         {
-            var lines = File.ReadLines(@"C:\Users\Carlos\Desktop\sdp_input.txt");
-            foreach(var l in lines)
+
+            var messages = ReadMessageLines(FilePath);
+            foreach(var m in messages)
             {
-                Console.WriteLine(l);
+                OutputMessage(m);
             }
         }
 
-        private IEnumerable<List<string>> ReadMessageLines(string filePath)
+        private static IEnumerable<List<string>> ReadMessageLines(string filePath)
         {
-            var lines = File.ReadLines(@"C:\Users\Carlos\Desktop\sdp_input.txt");
+            var lines = File.ReadLines(filePath);
             var currentMessage = new List<string>();
             foreach (var l in lines)
             {
-                if(string.IsNullOrWhiteSpace( l))
+                if (string.IsNullOrWhiteSpace(l))
                 {
                     yield return currentMessage;
                     currentMessage = new List<string>();
                 }
                 currentMessage.Add(l);
-                
             }
+        }
+
+        private static void OutputMessage(IEnumerable<string> message)
+        {
+            foreach (var line in message)
+            {
+                Console.WriteLine(line);
+                    }
         }
     }
 }
