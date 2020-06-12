@@ -5,7 +5,7 @@ namespace ConsoleApp1
 {
     public interface IMessageReader
     {
-        IEnumerable<List<string>> ReadMessages(string filePath);
+        IAsyncEnumerable<List<string>> ReadMessagesAsync(string filePath);
     }
 
 }

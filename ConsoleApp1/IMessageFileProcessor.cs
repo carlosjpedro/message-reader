@@ -1,8 +1,10 @@
-﻿namespace ConsoleApp1
+﻿using System.Threading.Tasks;
+
+namespace ConsoleApp1
 {
     public interface IMessageFileProcessor
     {
-        void ProcessFile(string filePath);
+        Task ProcessFileAsync(string filePath);
 
     }
 

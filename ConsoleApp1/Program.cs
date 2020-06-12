@@ -1,14 +1,15 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 
 namespace ConsoleApp1
 {
     class Program
     {
-        const string FilePath = @"C:\Users\Carlos\Desktop\sdp_input.txt";
-        static void Main(string[] args)
+        const string FilePath = @"C:\Users\Carlos\Desktop\sdp_input huge.txt";
+        static async System.Threading.Tasks.Task Main(string[] args)
         {
             var serviceProvider = new ServiceCollection()
                 .AddTransient<IMessageFileProcessor, MessageFileProcessor>()
@@ -22,7 +23,12 @@ namespace ConsoleApp1
 
             var fileProcessor = serviceProvider.GetRequiredService<IMessageFileProcessor>();
 
-            fileProcessor.ProcessFile(FilePath);
+            var stopWatch = new Stopwatch();
+            stopWatch.Start();
+
+            await fileProcessor.ProcessFileAsync(FilePath);
+            stopWatch.Stop();
+            Console.WriteLine($"Elapsed Time {stopWatch.ElapsedMilliseconds}ms");
 
         }
 
