@@ -1,8 +1,8 @@
 ﻿using ConsoleApp1.Exceptions;
 using ConsoleApp1.Model;
 using ConsoleApp1.Parsing;
+using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices.ComTypes;
 
 namespace ConsoleApp1
 {
@@ -24,6 +24,7 @@ namespace ConsoleApp1
             string ip = null;
             int? port = null;
             List<string> codecs = new List<string>();
+            
             try
             {
                 foreach (var line in messageLines)

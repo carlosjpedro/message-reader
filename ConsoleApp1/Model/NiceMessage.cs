@@ -11,6 +11,11 @@ namespace ConsoleApp1.Model
 
         public NiceMessage(string ip, int port, List<string> codecs)
         {
+
+
+
+
+
             Ip = ip;
             Port = port;
             Codecs = codecs;

@@ -26,13 +26,8 @@ namespace ConsoleApp1
 
             var fileProcessor = serviceProvider.GetRequiredService<IMessageFileProcessor>();
 
-            var stopWatch = new Stopwatch();
-            stopWatch.Start();
 
             await fileProcessor.ProcessFileAsync(FilePath);
-            stopWatch.Stop();
-            Console.WriteLine($"Elapsed Time {stopWatch.ElapsedMilliseconds}ms");
-
         }
 
 

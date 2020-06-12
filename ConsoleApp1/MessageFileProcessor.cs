@@ -1,7 +1,11 @@
-﻿using ConsoleApp1.Parsing;
+﻿using ConsoleApp1.Model;
+using ConsoleApp1.Parsing;
 using ConsoleApp1.Reading;
 using ConsoleApp1.Writing;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ConsoleApp1
@@ -23,13 +27,28 @@ namespace ConsoleApp1
 
         public async Task ProcessFileAsync(string filePath)
         {
-            var messageLines =_reader.ReadMessagesAsync(filePath).GetAsyncEnumerator();
+            var messageLines = _reader.ReadMessagesAsync(filePath).GetAsyncEnumerator();
+            var tasks = new List<Task<NiceMessage>>();
+
+            var stopWatch = new Stopwatch();
+            stopWatch.Start();
 
             while (await messageLines.MoveNextAsync())
             {
-                var message = await Task.Run(() => _parser.Parse(messageLines.Current));
-                _writer.Write(message);
+
+                tasks.Add(Task.Run(() => _parser.Parse(messageLines.Current)));
             }
+
+            await Task.WhenAll(tasks.ToArray());
+
+            stopWatch.Stop();
+            Console.WriteLine($"Elapsed Time {stopWatch.ElapsedMilliseconds}ms");
+            //await Task.Delay(15000);
+            //foreach (var task in tasks)
+            //{
+            //    _writer.Write(task.Result);
+            //}
+
 
         }
     }
