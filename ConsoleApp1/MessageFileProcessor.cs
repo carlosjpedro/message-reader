@@ -4,17 +4,21 @@
     {
         private readonly IMessageReader _reader;
 
-        public IMessageWriter _writer { get; }
+        private readonly IMessageWriter _writer;
 
-        public MessageFileProcessor(IMessageReader reader, IMessageWriter writer) {
+        private readonly IMessageParser _parser;
+
+        public MessageFileProcessor(IMessageReader reader, IMessageWriter writer, IMessageParser parser) {
             _reader = reader;
             _writer = writer;
+            _parser = parser;
         }
 
         public void ProcessFile(string filePath)
         {
-            foreach(var message in _reader.ReadMessages(filePath))
+            foreach(var messageLines in _reader.ReadMessages(filePath))
             {
+                var message = _parser.Parse(messageLines);
                 _writer.Write(message);
             }
         }

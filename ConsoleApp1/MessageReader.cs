@@ -15,6 +15,7 @@ namespace ConsoleApp1
                 {
                     yield return currentMessage;
                     currentMessage = new List<string>();
+                    continue;
                 }
                 currentMessage.Add(l);
             }

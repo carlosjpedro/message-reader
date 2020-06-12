@@ -5,14 +5,9 @@ namespace ConsoleApp1
 {
     public class ConsoleMessageWriter : IMessageWriter
     {
-        public void Write(IEnumerable<string> message)
+        public void Write(NiceMessage message)
         {
-            foreach (var line in message)
-            {
-                Console.WriteLine(line);
-            }
+            Console.WriteLine(message);            
         }
     }
-
-
 }

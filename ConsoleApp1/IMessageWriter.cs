@@ -4,8 +4,6 @@ namespace ConsoleApp1
 {
     public interface IMessageWriter
     {
-        public void Write(IEnumerable<string> message);
+        public void Write(NiceMessage message);
     }
-
-
 }
