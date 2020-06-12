@@ -17,6 +17,7 @@ namespace ConsoleApp1
                 .AddTransient<IMessageParser, MessageParser>()
                 .AddTransient<IExtractIp, IpExtractor>()
                 .AddTransient<IPortExtractor, PortExtractor>()
+                .AddTransient<ICodecExtractor, CodecExtractor>()
                 .BuildServiceProvider();
 
             var fileProcessor = serviceProvider.GetRequiredService<IMessageFileProcessor>();

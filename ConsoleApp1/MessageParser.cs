@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace ConsoleApp1
 {
@@ -6,11 +7,13 @@ namespace ConsoleApp1
     {
         private readonly IExtractIp _ipExtractor;
         private readonly IPortExtractor _portExtractor;
+        private readonly ICodecExtractor _codecExtractor;
 
-        public MessageParser(IExtractIp ipExtractor, IPortExtractor portExtractor)
+        public MessageParser(IExtractIp ipExtractor, IPortExtractor portExtractor, ICodecExtractor codecExtractor)
         {
             _ipExtractor = ipExtractor;
             _portExtractor = portExtractor;
+            _codecExtractor = codecExtractor;
         }
 
         public NiceMessage Parse(List<string> messageLines)
@@ -35,7 +38,11 @@ namespace ConsoleApp1
                         port = _portExtractor.Port(keyValue[1]);
                         break;
                     case "a":
-                        codecs.Add(keyValue[1]);
+                        var codec = _codecExtractor.Codec(keyValue[1]);
+                        if (!string.IsNullOrWhiteSpace(codec))
+                        {
+                            codecs.Add(codec);
+                        }
                         break;
                     default:
                         break;
