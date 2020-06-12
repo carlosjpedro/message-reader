@@ -6,10 +6,10 @@ namespace ConsoleApp1
     public class NiceMessage
     {
         public string Ip { get; }
-        public string Port { get; }
+        public int Port { get; }
         public List<string> Codecs { get; }
 
-        public NiceMessage(string ip, string port, List<string> codecs)
+        public NiceMessage(string ip, int port, List<string> codecs)
         {
             Ip = ip;
             Port = port;

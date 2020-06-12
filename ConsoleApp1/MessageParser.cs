@@ -4,9 +4,19 @@ namespace ConsoleApp1
 {
     public class MessageParser : IMessageParser
     {
+        private readonly IExtractIp _ipExtractor;
+        private readonly IPortExtractor _portExtractor;
+
+        public MessageParser(IExtractIp ipExtractor, IPortExtractor portExtractor)
+        {
+            _ipExtractor = ipExtractor;
+            _portExtractor = portExtractor;
+        }
+
         public NiceMessage Parse(List<string> messageLines)
         {
-            string ip = null, port = null;
+            string ip = null;
+            int? port = null;
             List<string> codecs = new List<string>();
 
             foreach (var line in messageLines)
@@ -19,10 +29,10 @@ namespace ConsoleApp1
                 switch (keyValue[0])
                 {
                     case "c":
-                        ip = keyValue[1];
+                        ip = _ipExtractor.Ip(keyValue[1]);
                         break;
                     case "m":
-                        port = keyValue[1];
+                        port = _portExtractor.Port(keyValue[1]);
                         break;
                     case "a":
                         codecs.Add(keyValue[1]);
@@ -33,7 +43,7 @@ namespace ConsoleApp1
 
             }
 
-            if (string.IsNullOrWhiteSpace(port))
+            if (!port.HasValue)
             {
                 throw new InvalidMessageFormat();
             }
@@ -47,7 +57,7 @@ namespace ConsoleApp1
                 throw new InvalidMessageFormat();
             }
 
-            return new NiceMessage(ip, port, codecs);
+            return new NiceMessage(ip, port.Value, codecs);
         }
     }
 
