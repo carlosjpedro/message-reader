@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using ConsoleApp1.Exceptions;
+using System.Text.RegularExpressions;
 
 namespace ConsoleApp1.Parsing
 {
