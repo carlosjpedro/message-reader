@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace ConsoleApp1
+namespace ConsoleApp1.Parsing
 {
     public class CodecExtractor : ICodecExtractor
     {

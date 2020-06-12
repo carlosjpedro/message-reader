@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace ConsoleApp1
+namespace ConsoleApp1.Parsing
 {
     public class PortExtractor : IPortExtractor
     {
@@ -14,7 +14,7 @@ namespace ConsoleApp1
                 throw new InvalidPortData();
             }
 
-            if(int.TryParse(match.Groups[1].Value, out int port))
+            if (int.TryParse(match.Groups[1].Value, out int port))
             {
                 return port;
             }

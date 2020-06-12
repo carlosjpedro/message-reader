@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace ConsoleApp1
+namespace ConsoleApp1.Parsing
 {
     public class IpExtractor : IExtractIp
     {
@@ -8,7 +8,7 @@ namespace ConsoleApp1
         public string Ip(string record)
         {
             var match = _ipRegex.Match(record);
-            if(match.Groups.Count < 2)
+            if (match.Groups.Count < 2)
             {
                 throw new InvalidIpData();
             }
